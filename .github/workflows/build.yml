@@ -65,7 +65,7 @@ jobs:
         with:
           type: 'zip'
           directory: "msys64"
-          filename: "${{ env.mingwTargetZip }}"
+          filename: "${{ env.targetZip }}"
           
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
