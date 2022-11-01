@@ -56,7 +56,9 @@ jobs:
           
       - name: Copy local-build.sh template
         shell: cmd
-        run: cd /d ${{ github.workspace }}\bazel-msys2-mingw64" && xcopy /H /Y /C ".\run.sh" "${{ github.workspace }}\msys64"
+        run: |
+          cd /d ${{ github.workspace }}" &&^
+          xcopy /H /Y /C ".\run.sh" "${{ github.workspace }}\msys64\"
         
       - name: Archive Release
         uses: thedoctor0/zip-release@master
