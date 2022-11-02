@@ -23,8 +23,8 @@ jobs:
           cd /d ${{ github.workspace }} &&^
           curl https://github.com/msys2/msys2-installer/releases/download/2022-10-28/msys2-base-x86_64-20221028.sfx.exe -L --output msys2-base-x86_64.sfx.exe &&^
           dir &&^
-          msys2-base-x86_64.sfx.exe -y
-        
+          msys2-base-x86_64.sfx.exe -y -o"build"
+          
 #       - name: curl cmake-3.24.0-windows-x86_64.zip
 #         shell: cmd
 #         run: |
@@ -39,7 +39,7 @@ jobs:
           cd /d ${{ github.workspace }} &&^
           curl https://github.com/2641797006/c/blob/master/GCC-zip/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z?raw=true -L --output x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z &&^
           dir &&^
-          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -o"msys64\mingw64"
+          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -o"build\msys64"
         
         # msys64\jdk-11.0.1
       - name: curl openjdk-11.0.1_windows-x64_bin.zip
@@ -48,31 +48,31 @@ jobs:
           cd /d ${{ github.workspace }} &&^ 
           curl https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_windows-x64_bin.zip -L --output openjdk-11.0.1_windows-x64_bin.zip &&^
           dir &&^
-          7z.exe x openjdk-11.0.1_windows-x64_bin.zip -o"msys64"
+          7z.exe x openjdk-11.0.1_windows-x64_bin.zip -o"build"
           
         # msys64\mingw64\bin\bazel.exe
       - name: curl bazel-5.3.2-windows-x86_64.exe
         shell: cmd
         run: |
-          cd /d ${{ github.workspace }}\msys64\mingw64\bin\ &&^ 
+          cd /d ${{ github.workspace }}\build\msys64\mingw64\bin\ &&^ 
           curl https://github.com/bazelbuild/bazel/releases/download/5.3.2/bazel-5.3.2-windows-x86_64.exe -L --output bazel.exe
           
       - name: Copy run.sh template
         shell: cmd
         run: |
           cd /d ${{ github.workspace }} &&^
-          xcopy /H /Y /C ".\run.sh" "msys64"
+          xcopy /H /Y /C ".\run.sh" "build\msys64"
         
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: "msys64"
+          directory: "build"
           filename: "${{ env.targetZip }}"
           
       - name: Release prebuilt
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "msys64/${{ env.targetZip }}"
+          artifacts: "build/${{ env.targetZip }}"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
