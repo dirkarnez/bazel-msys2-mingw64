@@ -39,7 +39,7 @@ jobs:
           cd /d ${{ github.workspace }} &&^
           curl https://github.com/2641797006/c/blob/master/GCC-zip/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z?raw=true -L --output x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z &&^
           dir &&^
-          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -y -o"${{ github.workspace }}\msys64" &&^
+          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -o"msys64"
         
         # msys64\jdk-11.0.1
       - name: curl openjdk-11.0.1_windows-x64_bin.zip
