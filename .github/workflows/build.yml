@@ -61,7 +61,7 @@ jobs:
         shell: cmd
         run: |
           cd /d ${{ github.workspace }} &&^
-          xcopy /H /Y /C ".\run.sh" "build\msys64"
+          xcopy /H /Y /C ".\run.sh" "build"
         
       - name: Archive Release
         uses: thedoctor0/zip-release@master
