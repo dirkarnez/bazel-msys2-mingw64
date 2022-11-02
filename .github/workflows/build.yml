@@ -39,18 +39,16 @@ jobs:
           cd /d ${{ github.workspace }} &&^
           curl https://github.com/2641797006/c/blob/master/GCC-zip/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z?raw=true -L --output x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z &&^
           dir &&^
-          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -o"${{ github.workspace }}\x86_64-8.1.0-release-posix-seh-rt_v6-rev0" &&^
-          cd /d "${{ github.workspace }}\x86_64-8.1.0-release-posix-seh-rt_v6-rev0" &&^
-          xcopy /E /H /Y /C ".\mingw64\*" "msys64\mingw64\"
+          7z.exe x x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z -y -o"${{ github.workspace }}\msys64" &&^
         
         # msys64\jdk-11.0.1
       - name: curl openjdk-11.0.1_windows-x64_bin.zip
         shell: cmd
         run: |
-          cd /d ${{ github.workspace }}\msys64\ &&^ 
+          cd /d ${{ github.workspace }} &&^ 
           curl https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_windows-x64_bin.zip -L --output openjdk-11.0.1_windows-x64_bin.zip &&^
           dir &&^
-          7z.exe x openjdk-11.0.1_windows-x64_bin.zip
+          7z.exe x openjdk-11.0.1_windows-x64_bin.zip -o"msys64"
           
         # msys64\mingw64\bin\bazel.exe
       - name: curl bazel-5.3.2-windows-x86_64.exe
@@ -62,7 +60,7 @@ jobs:
       - name: Copy local-build.sh template
         shell: cmd
         run: |
-          cd /d ${{ github.workspace }}" &&^
+          cd /d ${{ github.workspace }} &&^
           xcopy /H /Y /C ".\run.sh" "${{ github.workspace }}\msys64\"
         
       - name: Archive Release
