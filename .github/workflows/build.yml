@@ -57,7 +57,7 @@ jobs:
           cd /d ${{ github.workspace }}\msys64\mingw64\bin\ &&^ 
           curl https://github.com/bazelbuild/bazel/releases/download/5.3.2/bazel-5.3.2-windows-x86_64.exe -L --output bazel.exe
           
-      - name: Copy local-build.sh template
+      - name: Copy run.sh template
         shell: cmd
         run: |
           cd /d ${{ github.workspace }} &&^
