@@ -14,3 +14,6 @@ bazel-msys2-mingw64
 ### Components
 - [Releases · msys2/msys2-installer](https://github.com/msys2/msys2-installer/releases)
 - https://download.java.net/java/GA/jdk11/13/GPL/openjdk-11.0.1_windows-x64_bin.zip
+
+
+<!-- Security scan triggered at 2026-09-15 09:31:31 -->
